@@ -1,0 +1,41 @@
+/// Handle retina and svg background-images.
+/// Also handles scaling to fill backbround.
+/// IE8 compatible!!
+/// @todo TODO:Move this to core-css
+/// @name background-image
+/// @access public
+/// @author James Power - <james@olice.co.uk>
+/// @param {string} $url - relative path of image file
+/// @param {string} $type ['png'] - image file type
+/// @param {bool} $scale [true] - whether or not the image should scale to fill the container
+/// @param {bool} $svg [true] - whether or not to use svg where available
+/// @throw when invalid $url provided
+@mixin background-image($url, $type: 'png', $scale: true, $svg: true) {
+  @if type-of($url) == string {
+    background-image: url('#{$url}@1x.#{$type}');
+
+    .ie8 & {
+      @if $scale {
+        background-image: none;
+        filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='#{$url}@2x.#{$type}', sizingMethod='scale');
+      }
+    }
+
+    .backgroundsize & {
+      background-image: url('#{$url}@2x.#{$type}');
+
+      @if $scale {
+        background-size: 100%;
+      }
+    }
+
+    @if $type == 'png' and $svg == true {
+      .svg & {
+        background-image: url('#{$url}.svg');
+      }
+    }
+  }
+  @else {
+    @error 'Invalid param $url passed to mixin background-image, expected string, was #{type-of($url)}';
+  }
+}

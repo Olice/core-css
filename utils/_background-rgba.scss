@@ -1,0 +1,38 @@
+/// Handle rgba backgrounds
+/// IE8 compatible!!
+/// @todo TODO:Move this to core-css
+/// @todo TODO: test validatity of $_opacity
+/// @name background-rgba
+/// @access public
+/// @author James Power - <james@olice.co.uk>
+/// @param {color} $_color - hex color value
+/// @param {opacity} $_opacity - opacity value
+/// @throw when invalid $_color provided
+@mixin background-rgba($_color, $_opacity) {
+  @if type-of($_color) == color {
+    $_rgba: rgba($_color, $_opacity);
+    $_ie-rgba: ie-hex-str($_rgba);
+    // Test if $_color given is rgba already
+    @if str-length(inspect($_color)) > 17 {
+      $_rgba: $_color;
+      $_ie-rgba: ie-hex-str($_rgba);
+    }
+
+    .no-rgba & {
+      background-color: $_color;
+    }
+
+    .rgba & {
+      background-color: rgba($_color, $_opacity);
+    }
+
+    .ie8.no-rgba & {
+      background: transparent;
+      filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$_ie-rgba},endColorstr=#{$_ie-rgba});
+      zoom: 1;
+    }
+  }
+  @else {
+    @error 'Invalid param $_color passed to mixin background-rgba, expected color, was #{type-of($_url)}';
+  }
+}
