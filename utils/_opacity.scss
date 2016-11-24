@@ -1,0 +1,9 @@
+@mixin opacity($value) {
+  $ie-value: $value * 100;
+
+  opacity: $value;
+
+  .ie8 & {
+    -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$ie-value})';
+  }
+}
