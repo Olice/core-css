@@ -21,7 +21,8 @@
       }
     }
 
-    .backgroundsize & {
+    .backgroundsize &,
+    .modernizr_backgroundsize & {
       background-image: url('#{$url}@2x.#{$type}');
 
       @if $scale {
@@ -30,7 +31,8 @@
     }
 
     @if $type == 'png' and $svg == true {
-      .svg & {
+      .svg &,
+      .modernizr_svg & {
         background-image: url('#{$url}.svg');
       }
     }
