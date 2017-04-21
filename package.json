@@ -1,0 +1,19 @@
+{
+  "name": "@olice/core-css",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.scss",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://thejamespower@github.com/Olice/core-css.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/Olice/core-css/issues"
+  },
+  "homepage": "https://github.com/Olice/core-css#readme"
+}
